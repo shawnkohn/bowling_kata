@@ -30,5 +30,13 @@ describe "Game" do
 			rollMany(17, 0)
 			@game.score.should == 16
 		end
+
+		it "Should be 24 when rolling a single strike (10, 5, 2)" do
+			@game.roll(10)
+			@game.roll(5)
+			@game.roll(2)
+			rollMany(16, 0)
+			@game.score.should == 24
+		end
 	end
 end

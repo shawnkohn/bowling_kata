@@ -4,6 +4,7 @@ class Game
 
 	def initialize
 		@rolls = Array.new
+		@@NumFrames = 10
 	end
 
 	def roll(pins)
@@ -12,15 +13,36 @@ class Game
 
 	def score
 		totalScore = 0
+		frameIndex = 0
 
-		(0.step(@rolls.length-1, 2)).each { |i|
-			if @rolls[i] + @rolls[i+1] == 10
-				totalScore += @rolls[i+2]
+		(1..@@NumFrames).each do
+			if isStrike(frameIndex)
+				totalScore += 10 + strikeBonus(frameIndex)
+				frameIndex += 1
+			elsif isSpare(frameIndex)
+				totalScore += @rolls[frameIndex] + @rolls[frameIndex+1] + @rolls[frameIndex+2]
+				frameIndex += 2
+			else
+				totalScore += @rolls[frameIndex] + @rolls[frameIndex+1]
+				frameIndex += 2
 			end
-			totalScore += @rolls[i] + @rolls[i+1]
-		}
+		end
 
 		totalScore
 	end
+
+	private 
+		def isStrike(frameIndex)
+			@rolls[frameIndex] == 10
+		end
+
+		def isSpare(frameIndex)
+			@rolls[frameIndex] + @rolls[frameIndex+1] == 10
+		end
+
+		def strikeBonus(frameIndex)
+			@rolls[frameIndex+1] + @rolls[frameIndex+2]
+		end
+
 
 end
