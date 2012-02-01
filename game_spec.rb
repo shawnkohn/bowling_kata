@@ -38,5 +38,10 @@ describe "Game" do
 			rollMany(16, 0)
 			@game.score.should == 24
 		end
+
+		it "Should be 300 when rolling a perfect game (12 strikes)" do
+			rollMany(12, 10)
+			@game.score.should == 300
+		end
 	end
 end

@@ -20,7 +20,7 @@ class Game
 				totalScore += 10 + strikeBonus(frameIndex)
 				frameIndex += 1
 			elsif isSpare(frameIndex)
-				totalScore += @rolls[frameIndex] + @rolls[frameIndex+1] + @rolls[frameIndex+2]
+				totalScore += 10 + spareBonus(frameIndex)
 				frameIndex += 2
 			else
 				totalScore += @rolls[frameIndex] + @rolls[frameIndex+1]
@@ -42,6 +42,10 @@ class Game
 
 		def strikeBonus(frameIndex)
 			@rolls[frameIndex+1] + @rolls[frameIndex+2]
+		end
+
+		def spareBonus(frameIndex)
+			@rolls[frameIndex+2]
 		end
 
 
