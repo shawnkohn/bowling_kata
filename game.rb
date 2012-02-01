@@ -2,11 +2,16 @@
 
 class Game
 
+	def initialize
+		@totalScore = 0
+	end
+
 	def roll(pins)
+		@totalScore += pins
 	end
 
 	def score
-		0
+		@totalScore
 	end
 
 end
